@@ -80,7 +80,14 @@ export ZSH="/home/juan/.oh-my-zsh"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git
   virtualenv
-  virtualenvwrapper)
+  virtualenvwrapper
+  sudo
+  zsh-autosuggestions
+  sudo
+  web-search
+  copydir
+  copyfile
+)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -127,12 +134,16 @@ date
 # problem with mc running in alacritty solved using tmux or this alias
 alias mc='mc -x'
 
-# for powerlevel10k
+## for powerlevel10k
 source ~/powerlevel10k/powerlevel10k.zsh-theme
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+#
+## To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# starship  init script for zsh
-# eval "$(starship init zsh)"
-fpath+=${ZDOTDIR:-~}/.zsh_functions
+
+fpath+=${ZDOTDIR:-~}/.zsh_function
+
+#export STARSHIP_CONFIG=~/.config/starship/config.toml
+#export STARSHIP_CACHE=~/.config/starship/cache
+## starship  init script for zsh
+#eval "$(starship init zsh)"

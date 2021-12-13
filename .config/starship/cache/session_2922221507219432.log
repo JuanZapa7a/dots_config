@@ -1,0 +1,2 @@
+[ERROR] - (starship::config): Unable to parse the config file: duplicate key: `format` at line 1 column 1
+[ERROR] - (starship::config): Unable to parse the config file: duplicate key: `format` at line 1 column 1

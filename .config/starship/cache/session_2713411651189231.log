@@ -1,0 +1,2 @@
+[ERROR] - (starship::config): Unable to parse the config file: redefinition of table `character` for key `character` at line 42 column 1
+[ERROR] - (starship::config): Unable to parse the config file: redefinition of table `character` for key `character` at line 42 column 1

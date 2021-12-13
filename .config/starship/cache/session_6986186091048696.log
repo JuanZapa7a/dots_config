@@ -1,0 +1,7 @@
+[WARN] - (starship::configs::git_status): Unknown config key 'staged_count'
+[WARN] - (starship::configs::memory_usage): Unknown config key 'show_percentage'
+[WARN] - (starship::configs::git_status): Did you mean 'staged'?
+[WARN] - (starship::configs::memory_usage): Unknown config key 'show_swap'
+[WARN] - (starship::configs::memory_usage): Unknown config key 'separator'
+[WARN] - (starship::configs::character): Unknown config key 'symbol'
+[WARN] - (starship::configs::character): Unknown config key 'use_symbol_for_status'

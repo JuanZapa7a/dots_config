@@ -79,15 +79,21 @@ export ZSH="/home/juan/.oh-my-zsh"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git
+  pip
   virtualenv
   virtualenvwrapper
   sudo
   zsh-autosuggestions
   sudo
   web-search
-  copydir
-  copyfile
+  copydire
 )
+source $(dirname $(gem which colorls))/tab_complete.sh
+alias lc='colorls -la --sd'
+alias lt='colorls -a --sd --tree'
+alias ld='colorls  -ad'
+
+
 
 source $ZSH/oh-my-zsh.sh
 
@@ -139,7 +145,6 @@ source ~/powerlevel10k/powerlevel10k.zsh-theme
 #
 ## To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
 
 fpath+=${ZDOTDIR:-~}/.zsh_function
 

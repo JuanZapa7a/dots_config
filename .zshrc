@@ -124,6 +124,8 @@ alias fetch='clear && neofetch && fortune -s'
 fetch
 alias date='date "+%R %A, %d %B %Y"'
 date
+# problem with mc running in alacritty solved using tmux or this alias
+alias mc='mc -x'
 
 # for powerlevel10k
 source ~/powerlevel10k/powerlevel10k.zsh-theme

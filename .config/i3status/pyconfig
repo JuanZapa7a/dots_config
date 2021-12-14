@@ -16,7 +16,7 @@ general {
 #order += "tztime holder__hey_man" 
 #order += "wireless _first_"
 #order += "ethernet _first_"
-order += "spotify"
+#order += "spotify"
 order += "volume master"
 order += "backlight"
 order += "battery_level"
@@ -24,8 +24,26 @@ order += "cpu_usage"
 order += "disk /"
 order += "load"
 order += "memory"
+order += "weather_owm"
 order += "tztime local"
 #order += "clock"
+
+weather_owm {
+    api_key = 'a1825a037a34e1250f3cfa5405e6cd22' 
+    #city = 'Cartagena'
+    #country = 'ES'
+    #forecast_days = 3
+    format = '{city}, {description}, ({sunrise}{sunset}), {temperature} {wind} [{clouds} {humidity} {pressure} {rain}],  {forecast}'
+    lang = 'es'
+    format_temperature='[\?color=all {current:.0f}°{unit} ({min}/{max})°{unit}]'
+    format_wind= '[\?if=speed {speed:.0f}m/s {degree}º {gust}]'
+    unit_rain='mm'
+    unit_snow='mm'
+    unit_wind='msec'
+    unit_temperature='c'
+    icon_sunrise=''
+    icon_sunset=''
+}
 
 spotify {
     format = "{title} by {artist} -> {time}"

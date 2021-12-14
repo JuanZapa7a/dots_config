@@ -10,26 +10,26 @@
 #    colors = true
 #    interval = 1
 #    align = 'center'
-#	  output_format = "i3bar"
+#	   output_format = "i3bar"
 #}
 
-py3status {
+#py3status {
 #   align = 'left'
 #   #markup = 'pango'
 #   #min_width = 20
 #   separator = False
 #   separator_block_width = 5
 #
-#   #background = '#285577FF'
-   border = '#4c7899'
-   border_bottom = 1
-   border_left = 1
-   border_right = 1
-   border_top = 1
+#   background = '#0f0f0f8f'
+#   border = '#909090ff'
+#   border_bottom = 1
+#   border_left = 0
+#   border_right = 0
+#   border_top = 1
 #
 #   #min_length = 15
 #   #position = 'right'
-}
+#}
 
 #order += "ipv6"
 #order += "tztime holder__hey_man" 

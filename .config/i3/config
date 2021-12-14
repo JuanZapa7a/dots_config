@@ -319,8 +319,9 @@ bar{
   position top
   # set bar font
   font pango:MesloLGS NF bold italic 11
-  separator_symbol " "
-  status_command py3status -c ~/.config/i3status/pyconfig | ~/.virtualenvs/weather/bin/python ~/.config/i3status/weather.py --wrap-i3-status --api-key  a1825a037a34e1250f3cfa5405e6cd22 --city-id 2520058 --position 8 
+  #separator_symbol ""
+  #status_command py3status -c ~/.config/i3status/pyconfig | ~/.virtualenvs/weather/bin/python ~/.config/i3status/weather.py --wrap-i3-status --api-key  a1825a037a34e1250f3cfa5405e6cd22 --city-id 2520058 --position 8 
+  status_command py3status -c ~/.config/i3status/pyconfig 
   i3bar_command i3bar -t
   colors {
     background #0f0f0f8f

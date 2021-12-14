@@ -88,7 +88,11 @@ plugins=(git
   web-search
   copydire
   zsh-syntax-highlighting
+  zsh-completions
 )
+#for zsh-completions plugin
+autoload -U compinit && compinit
+
 source $(dirname $(gem which colorls))/tab_complete.sh
 #alias lc='colorls -la --sd'
 alias lsd='colorls'

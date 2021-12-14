@@ -89,11 +89,10 @@ plugins=(git
   copydire
 )
 source $(dirname $(gem which colorls))/tab_complete.sh
-alias lc='colorls -la --sd'
-alias lt='colorls -a --sd --tree'
-alias ld='colorls  -ad'
-
-
+#alias lc='colorls -la --sd'
+alias lsd='colorls'
+#alias lt='colorls -a --sd --tree'
+#alias ld='colorls  -ad'
 
 source $ZSH/oh-my-zsh.sh
 

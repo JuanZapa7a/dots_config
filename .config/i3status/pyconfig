@@ -6,43 +6,69 @@
 # ß
 # If the above line is not correctly displayed, fix your editor first!
 
-general {
-        colors = true
-        interval = 5
-	output_format = "i3bar"
+#general {
+#    colors = true
+#    interval = 1
+#    align = 'center'
+#	  output_format = "i3bar"
+#}
+
+py3status {
+   align = 'left'
+   #markup = 'pango'
+   #min_width = 20
+   separator = False
+   separator_block_width = 5
+
+   #background = '#285577FF'
+   border = '#4c7899'
+   border_bottom = 1
+   border_left = 1
+   border_right = 1
+   border_top = 1
+
+   #min_length = 15
+   #position = 'right'
 }
 
 #order += "ipv6"
 #order += "tztime holder__hey_man" 
 #order += "wireless _first_"
 #order += "ethernet _first_"
-#order += "spotify"
-order += "volume master"
+order += "spotify"
+order += "volume_status"
 order += "backlight"
 order += "battery_level"
-order += "cpu_usage"
-order += "disk /"
-order += "load"
-order += "memory"
+order += "sysdata"
+order += "diskdata"
 order += "weather_owm"
-order += "tztime local"
-#order += "clock"
+order += "clock"
 
 weather_owm {
     api_key = 'a1825a037a34e1250f3cfa5405e6cd22' 
     #city = 'Cartagena'
     #country = 'ES'
     #forecast_days = 3
-    format = '{city}, {description}, ({sunrise}{sunset}), {temperature} {wind} [{clouds} {humidity} {pressure} {rain}],  {forecast}'
+    format = '[\?color=lightblue {city}, {description}, ({sunrise} {sunset}), {temperature} {wind} [{clouds} {humidity} {pressure} {rain}] 3d·{forecast}]'
     lang = 'es'
-    format_temperature='[\?color=all {current:.0f}°{unit} ({min}/{max})°{unit}]'
-    format_wind= '[\?if=speed {speed:.0f}m/s {degree}º {gust}]'
-    unit_rain='mm'
-    unit_snow='mm'
-    unit_wind='msec'
-    unit_temperature='c'
-    icon_sunrise=''
-    icon_sunset=''
+    format_temperature='{icon}·[\?color=all {current:.0f}°{unit} ({min}/{max})°{unit}]'
+    format_wind= '[{icon}·\?if=speed {speed:.0f}m/s({direction})]'
+    format_sunrise = '{icon}·%-H:%M'
+    format_sunset = '{icon}·%-H:%M'
+    format_clouds = '{icon}·{coverage}%'
+    format_humidity = '{icon}·{humidity}%'
+    format_pressure = '{icon}·{pressure}hPa'
+    unit_rain = 'mm'
+    unit_snow = 'mm'
+    unit_wind = 'msec'
+    unit_temperature = 'c'
+    icon_wind = ''
+    icon_temperature = ''
+    icon_sunrise = ''
+    icon_sunset = ''
+    icon_humidity = ''
+    icon_cloud = ''
+    icon_pressure = ''
 }
 
 spotify {
@@ -54,27 +80,32 @@ tztime holder__hey_man {
         format = "holder__hey_man"
 }
 
-volume master {
-        format = "♪: %volume"
-        format_muted = "Vol: muted (%volume)"
-        #device = "pulse:1"
-	device = "default"
-        mixer = "Master"
-        mixer_idx = 0
+volume_status {
+    thresholds = [
+        (0, "#FF0000"),
+        (10, "#E2571E"),
+        (20, "#FF7F00"),
+        (30, "#FFFF00"),
+        (40, "#00FF00"),
+        (50, "#96BF33"),
+        (60, "#0000FF"),
+        (70, "#4B0082"),
+        (80, "#8B00FF"),
+        (90, "#FFFFFF")
+    ]
 }
 
 backlight {
-  format = "☼: {level}%"
-  cache_timeout = 1
+  #format = "☼: {level}%"
+  #cache_timeout = 1
   #path = “/home/juan/.config/i3/brightness”
   #device=
   #device_path="/sys/class/backlight/intel_backlight/brightness"
   #max_characters = 5
 }
 
-cpu_usage {
-	format = "CPU: %usage"
-	max_threshold = 75
+
+sysdata{
 }
 
 wireless _first_ {
@@ -92,12 +123,13 @@ battery_level {
         threshold_bad = 10
 }
 
-disk "/" {
-        format = "Disk: %used/%avail"
+diskdata{
+        #disk= "sda"
+        format = '[\?color=violet Disk:{used}/{total_space}Gb]' 
 }
 
-load {
-        format = "Load: %1min"
+loadavg {
+        format = 'Loadavg [\?color=1avg {1min}] [\?color=5avg {5min}] [\?color=15avg {15min}]'
 }
 
 memory {
@@ -106,13 +138,8 @@ memory {
         format_degraded = "MEMORY < %available"
 }
 
-tztime local {
-        #format= "Date: %Y-%m-%d   "+%R %A, %B %d, %Y"  Time: %H:%M:%S"
-	format= "%A, %d %B %Y (%R:%S) "
-}
-
-# wall clocks
 clock {
   format = "{Europe/Madrid}"
-  format_time = "{icon}"
+  format_time = ' %A, %d %B de %Y (%R:%S) '
+
 }

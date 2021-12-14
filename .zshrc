@@ -87,6 +87,7 @@ plugins=(git
   sudo
   web-search
   copydire
+  zsh-syntax-highlighting
 )
 source $(dirname $(gem which colorls))/tab_complete.sh
 #alias lc='colorls -la --sd'

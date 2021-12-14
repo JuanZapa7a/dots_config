@@ -14,21 +14,21 @@
 #}
 
 py3status {
-   align = 'left'
-   #markup = 'pango'
-   #min_width = 20
-   separator = False
-   separator_block_width = 5
-
-   #background = '#285577FF'
+#   align = 'left'
+#   #markup = 'pango'
+#   #min_width = 20
+#   separator = False
+#   separator_block_width = 5
+#
+#   #background = '#285577FF'
    border = '#4c7899'
    border_bottom = 1
    border_left = 1
    border_right = 1
    border_top = 1
-
-   #min_length = 15
-   #position = 'right'
+#
+#   #min_length = 15
+#   #position = 'right'
 }
 
 #order += "ipv6"
@@ -81,18 +81,18 @@ tztime holder__hey_man {
 }
 
 volume_status {
-    thresholds = [
-        (0, "#FF0000"),
-        (10, "#E2571E"),
-        (20, "#FF7F00"),
-        (30, "#FFFF00"),
-        (40, "#00FF00"),
-        (50, "#96BF33"),
-        (60, "#0000FF"),
-        (70, "#4B0082"),
-        (80, "#8B00FF"),
-        (90, "#FFFFFF")
-    ]
+    #thresholds = [
+    #    (0, "#FF0000"),
+    #    (10, "#E2571E"),
+    #    (20, "#FF7F00"),
+    #    (30, "#FFFF00"),
+    #    (40, "#00FF00"),
+    #    (50, "#96BF33"),
+    #    (60, "#0000FF"),
+    #    (70, "#4B0082"),
+    #    (80, "#8B00FF"),
+    #    (90, "#FFFFFF")
+    #]
 }
 
 backlight {

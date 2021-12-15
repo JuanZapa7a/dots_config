@@ -86,7 +86,7 @@ plugins=(git
   zsh-autosuggestions
   sudo
   web-search
-  copydire
+  copydir
   zsh-syntax-highlighting
   zsh-completions
 )

@@ -47,8 +47,8 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 
 
 # Use brightnessctl to adjust bright
-bindsym XF86MonBrightnessDown exec  --no-startup-id brightnessctl set 2%- && $refresh_i3status
-bindsym XF86MonBrightnessUp exec  --no-startup-id brightnessctl set +2% && $refresh_i3status
+bindsym XF86MonBrightnessDown exec  brightnessctl set 2%- && $refresh_i3status
+bindsym XF86MonBrightnessUp exec  brightnessctl set +2% && $refresh_i3status
 
 # Use brightnessctl to adjust bright
 #bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
@@ -248,7 +248,7 @@ hide_edge_borders smart # hide_edge_borders none|vertical|horizontal|both|smart
 
 #exec --no-startup-id picom -cCf -r 8 -o 0.90 -l 0 -t 0 -I 0.99 -O 0.99 -D 2 -m 0.90 -i 0.90 -e 0.90 --experimental-backend --no-fading-openclose --sw-opti --inactive-dim 0.4 -b
  
-exec_always --no-startup-id picom -b && $refresh_i3status
+exec_always --no-startup-id picom -b --experimental-backends && $refresh_i3status
 
 ##### i3-gaps ##############
 for_window [class=".*"] border pixel 2 #*

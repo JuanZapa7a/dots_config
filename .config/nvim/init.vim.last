@@ -1,0 +1,205 @@
+scriptencoding utf-8
+
+" .........................................................
+" # Plugins
+" .........................................................
+
+call plug#begin(expand('~/.local/share/nvim/plugged'))
+
+Plug 'arcticicestudio/nord-vim', { 'on':  'NERDTreeToggle' }
+Plug 'joshdick/onedark.vim'
+Plug 'iCyMind/NeoSolarized'
+Plug 'scrooloose/nerdtree'
+Plug 'cocopon/iceberg.vim'
+Plug 'gkeep/iceberg-dark'
+Plug 'powerline/powerline'
+Plug 'vim-airline/vim-airline' " Barra airline
+Plug 'vim-airline/vim-airline-themes'  " Temas para airline
+Plug 'Yggdroot/indentLine' "Muestra niveles indentación con líneas verticales.
+Plug 'lervag/vimtex'
+Plug 'sirver/ultisnips' "proporciona codigo reusable
+Plug 'honza/vim-snippets'
+Plug 'KeitaNakamura/tex-conceal.vim' 
+Plug 'neomake/neomake'
+Plug 'ludovicchabant/vim-gutentags' 
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'Shougo/neco-syntax'  " Fuente general de auto completado
+Plug 'vim-pandoc/vim-pandoc'
+Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'conornewton/vim-pandoc-markdown-preview'
+Plug 'tpope/vim-surround'
+Plug 'dylanaraps/wal.vim'
+" tabular plugin is used to format tables
+Plug 'godlygeek/tabular'
+" JSON front matter highlight plugin
+Plug 'elzr/vim-json'
+Plug 'plasticboy/vim-markdown'
+" if you don't have node and yarn, use pre build
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
+call plug#end()
+
+" ..........................................................
+" # Settings
+" ..........................................................
+
+" ## General
+"
+set title
+set mouse=a
+set updatetime=100
+set noshowmode  "Airline muestra la barra de estado
+set pumblend=0
+set hidden
+set noswapfile
+set colorcolumn=80  " Set & show limit column 
+set scrolloff=3  " Display at least 3 lines around you cursor
+set diffopt+=vertical  " Always use vertical diffs
+
+" # Spelling
+"
+set spelllang=es_es,en_gb
+inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u " CTR-L to correct
+
+" ## Lines
+"
+set wrap  " wrap lines (no display long lines) fo+=t
+set number  " Display line numbers
+set relativenumber  " Show relative line numbers
+set nojoinspaces  " Always use one space to join line
+"set textwidth=80 " Set width of text
+"set fo+=a " automatic :help fo-table                                    
+
+
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+set foldnestmax=2
+set foldlevel=1
+
+" ## Indent to spaces
+"
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set shiftround
+set expandtab " Insertar espacios en lugar de <Tab>s
+
+" ## Search & replace
+set ignorecase " Ignorar mayúsculas en una búsqueda
+set smartcase " No ignorar mayúsculas si la palabra a buscar tiene mayúsculasgg
+set gdefault
+set inccommand=nosplit " Show replace live preview
+
+" ## Use rg for :grep
+set grepprg=rg\ --vimgrep
+set grepformat=%f:%l:%c:%m
+
+
+" ## Theme & Colorscheme
+colorscheme wal
+"set background=dark
+"https://vim.fandom.com/wiki/Highlight_current_line
+set cursorline  " Highlight current line
+set cursorcolumn " Highlight current column
+hi cursorline cterm=bold ctermfg=252 guifg=#d0d0d0 ctermbg=237 guibg=#3a3a3a
+hi cursorcolumn ctermbg=236 guibg=#202020
+nnoremap <Leader>c :set cursorline! cursorcolumn!<CR> " toggle cursorlineoff
+"hi visual  ctermfg=231 guifg=#ffffff ctermbg=103 guibg=#8787AF 
+hi visual cterm=bold ctermfg=16 guifg=#000000 ctermbg=192 guibg=#d7ff87
+
+
+" NerdTree
+let g:NERDTreeChDirMode = 2  " Cambia el directorio actual al nodo padre actual
+map <F2> :NERDTreeToggle<CR>
+
+" Airline
+let g:airline#extensions#tabline#enabled = 1  " Mostrar buffers abiertos (como pestañas)
+let g:airline#extensions#tabline#fnamemod = ':t'  " Mostrar sólo el nombre del archivo
+let g:airline_powerline_fonts = 1 " Cargar fuente Powerline y símbolos (ver nota)
+"let g:airline_theme= 'icebergDark'
+"let g:airline_theme= 'dark'
+
+" Vimtex
+let g:tex_flavor='latex'
+let g:vimtex_view_method='zathura'
+let g:vimtex_quickfix_mode=0
+let g:vimtex_compiler_latexmk = {
+    \ 'options' : [
+    \   '-pdf',
+    \   '-shell-escape',
+    \   '-verbose',
+    \   '-file-line-error',
+    \   '-synctex=1',
+    \   '-interaction=nonstopmode',
+    \ ],
+    \}
+let g:matchup_override_vimtex = 1
+
+" IndentLine
+" Background (Vim, GVim)
+"let g:indentLine_bgcolor_term = 202
+"let g:indentLine_bgcolor_gui = '#FF5F00'
+let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+"let g:indentLine_setConceal = 2 
+
+" Ultisnips
+" Expandir snippet con Ctrl + j
+let g:UltiSnipsExpandTrigger = '<tab>'
+" Ir a siguiente ubicacion con Ctrl + j
+let g:UltiSnipsJumpForwardTrigger = '<tab>'
+" Ir a anterior ubicacion con Ctrl + k
+let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
+
+" deoplete
+" Activar deoplete al iniciar Neovim
+let g:deoplete#enable_at_startup = 1
+let g:python3_host_prog='/usr/bin/python3'
+" Cerrar automaticamente la ventana de vista previa (donde se muestra documentación, si existe)
+augroup deopleteCompleteDoneAu
+  autocmd!
+  autocmd CompleteDone * silent! pclose!
+augroup EN
+
+" vimtex trabaja con deoplete
+call deoplete#custom#var('omni', 'input_patterns', {
+        \ 'tex': g:vimtex#re#deoplete
+        \})
+
+" Let nvim transparent  
+highlight Normal ctermbg=none
+highlight NonText ctermbg=none
+
+" choosing a previewer for MarkDown
+let g:md_pdf_viewer="zathura"
+let g:md_args = "--template eisvogel --listings"
+" autocompiling when saving
+autocmd BufWritePost *.md !pandoc % -o %:r.pdf --pdf-engine=pdflatex
+
+" MarkDown
+" disable header folding
+let g:vim_markdown_folding_disabled = 1
+
+" do not use conceal feature, the implementation is not so good
+let g:vim_markdown_conceal = 0
+
+" disable math tex conceal feature
+let g:tex_conceal = ""
+let g:vim_markdown_math = 1
+
+" support front matter of various format
+let g:vim_markdown_frontmatter = 1  " for YAML format
+let g:vim_markdown_toml_frontmatter = 1  " for TOML format
+let g:vim_markdown_json_frontmatter = 1  " for JSON format
+
+" do not close the preview tab when switching to other buffers
+let g:mkdp_auto_close = 0
+nnoremap <M-m> :MarkdownPreview<CR>
+
+" pandoc_syntax
+augroup pandoc_syntax
+    au! BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
+augroup END
+
+" Edit vimr configuration file
+nnoremap <Leader>ve :e $MYVIMRC<CR>
+" Reload vimr configuration file
+nnoremap <Leader>vr :source $MYVIMRC<CR>

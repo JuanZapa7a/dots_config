@@ -22,23 +22,39 @@ call plug#end()
 "
 set title
 set mouse=a " It lets you use mous-e on the terminal
-set clipboard=unnamedplus " Keep what you copy on the clip-board
+set clipboard+=unnamedplus " Keep what you copy on the clip-board
 set updatetime=100
 set noshowmode  "Airline muestra la barra de estado
 set pumblend=0
 set hidden
+" Forbidding you to modify a file which is already open in another process
 set noswapfile
 highlight ColorColumn ctermbg=16 " set color for colorcolumn
 set colorcolumn=80  " Set & show limit column 
 set scrolloff=3  " Display at least 3 lines around you cursor
 set diffopt+=vertical  " Always use vertical diffs
 
-" # Spelling
+" save undo-trees in files
+set undofile
+set undodir=$HOME/.config/nvim/undo
+" number of undo saved
+set undolevels=10000
+set undoreload=10000
+
+" I disabled the arrow keys to force myself to only use hjkl.
+"
+noremap <Up> <Nop>
+noremap <Down> <Nop>
+noremap <Left> <Nop>
+noremap <Right> <Nop>
+
+" ## Spelling
 "
 set spelllang=es_es,en_gb
 inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u " CTR-L to correct
 
-" # Lines
+" ## Lines
+"
 set wrap  " wrap lines (no display long lines) fo+=t
 set number " Show the numbers on the left
 set numberwidth=1 " Set numbers width
@@ -53,26 +69,31 @@ set foldnestmax=2
 set foldlevel=1
 
 " ## Indent to spaces
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
+"
+set autoindent
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
 set shiftround
 set expandtab " Insertar espacios en lugar de <Tab>s
 
 " ## Search & replace
+"
 set ignorecase " Ignorar mayúsculas en una búsqueda
 set smartcase " No ignorar mayúsculas si la palabra a buscar tiene mayúsculasgg
 set gdefault
 set inccommand=nosplit " Show replace live preview
 
 " ## Use rg for :grep
+"
 set grepprg=rg\ --vimgrep
 set grepformat=%f:%l:%c:%m
 
 
 " ## Theme & Colorscheme
+"
 "set termguicolors  " Activa true colors en la terminal y quita powerline
-" colorscheme wal
+"colorscheme wal
 "set background=dark
 "https://vim.fandom.com/wiki/Highlight_current_line
 set cursorline  " Highlight current line
@@ -87,15 +108,15 @@ nnoremap <silent> <Leader>c :execute 'match Search /\%'.virtcol('.').'v/'<CR>
 " To highlight the current virtual column (column after tabs are expanded), 
 " and have the highlighting stay where it is when the cursor is moved 
 
-
-" Airline
-let g:airline#extensions#tabline#enabled = 1  " Mostrar buffers abiertos (como pestañas)
+" ## Airline
+"
+let g:airline#extensions#tabline#enabled = 1  " Mostrar buffers abiettos (como pestañas)
 let g:airline#extensions#tabline#fnamemod = ':t'  " Mostrar sólo el nombre del archivo
 let g:airline_powerline_fonts = 1 " Cargar fuente Powerline y símbolos (ver nota)
 "let g:airline_theme= 'icebergDark'
 let g:airline_theme='dark'
 
-" NerdTree
+" ## NerdTree
+"
 let g:NERDTreeChDirMode = 2  " Cambia el directorio actual al nodo padre actual
 map <F2> :NERDTreeToggle<CR>
-

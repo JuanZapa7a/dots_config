@@ -1,0 +1,140 @@
+scriptencoding utf-8
+
+" .........................................................
+" # Plugins
+" .........................................................
+
+call plug#begin('~/.local/share/nvim/plugged')
+
+Plug 'arcticicestudio/nord-vim' 
+Plug 'joshdick/onedark.vim'
+Plug 'iCyMind/NeoSolarized'
+Plug 'scrooloose/nerdtree'
+"Plug 'powerline/powerline'
+Plug 'vim-airline/vim-airline' " Barra airline
+Plug 'vim-airline/vim-airline-themes'  " Temas para airline
+"Plug 'Yggdroot/indentLine' "Muestra los niveles de indentación con líneas verticales.
+Plug 'lervag/vimtex'
+Plug 'sirver/ultisnips' "proporciona codigo reusable
+Plug 'honza/vim-snippets'
+Plug 'KeitaNakamura/tex-conceal.vim'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'Shougo/neco-syntax'  " Fuente general de auto completado
+
+call plug#end()
+
+" ..........................................................
+" # Settings
+" ..........................................................
+
+" ## General
+
+set title
+set mouse=a
+set updatetime=100
+set noshowmode  "Airline muestra la barra de estado
+set pumblend=0
+set hidden
+set noswapfile
+set colorcolumn=90  " Set & show limit column
+set scrolloff=3  " Display at least 3 lines around you cursor
+set diffopt+=vertical  " Always use vertical diffs
+set spelllang=en,es
+
+
+" ## Lines
+
+set wrap  " wrap lines (no display long lines)
+set number  " Display line numbers
+set relativenumber  " Show relative line numbers
+set nojoinspaces  " Always use one space to join line
+
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+set foldnestmax=2
+set foldlevel=1
+
+" Indentación a dos espacios
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set shiftround
+set expandtab "Insertar espacios en lugar de <Tab>s
+
+
+" ## Search & replace
+
+set ignorecase " Ignorar mayúsculas en una búsqueda
+set smartcase " No ignorar mayúsculas si la palabra a buscar tiene mayúsculas
+set gdefault
+set inccommand=nosplit " Show replace live preview
+
+" Use rg for :grep
+set grepprg=rg\ --vimgrep
+set grepformat=%f:%l:%c:%m
+
+
+" ## Theme & Colorscheme
+
+"set termguicolors  " Active true colors on terminal
+let g:ayucolor = 'dark'  " mirage, light, dark
+"set background=light
+colorscheme nord
+set cursorline  " Highlight current line
+hi CursorLine term=bold cterm=bold guibg=Grey10
+
+" ## Python providers
+
+let g:loaded_python_provider = 0
+let g:python3_host_prog = $NVIM_PYTHON_HOST
+
+
+" NerdTree
+let g:NERDTreeChDirMode = 2  " Cambia el directorio actual al nodo padre actual
+map <F2> :NERDTreeToggle<CR>
+
+"Poweline
+"set guifont=Source\ Code\ Pro\ for\ Powerline\ 10 
+"let g:Powerline_symbols = 'fancy'
+
+"Airline
+let g:airline#extensions#tabline#enabled = 1  " Mostrar buffers abiertos (como pestañas)
+let g:airline#extensions#tabline#fnamemod = ':t'  " Mostrar sólo el nombre del archivo
+let g:airline_powerline_fonts = 1 " Cargar fuente Powerline y símbolos (ver nota)
+let g:airline_theme='nord'
+"let g:airline_solarized_bg='dark'
+
+
+" IndentLine
+" Background (Vim, GVim)
+"let g:indentLine_bgcolor_term = 202
+"let g:indentLine_bgcolor_gui = '#FF5F00'
+"let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+
+"Vimtex
+let g:tex_flavor='latex'
+let g:vimtex_view_method='zathura'
+let g:vimtex_quickfix_mode=0
+
+" tex-conceal
+set conceallevel=1
+let g:tex_conceal='abdmg'
+hi Conceal ctermbg=none
+
+" Ultisnips
+" Expandir snippet con Ctrl + j
+let g:UltiSnipsExpandTrigger = '<tab>'
+" Ir a siguiente ubicacion con Ctrl + j
+let g:UltiSnipsJumpForwardTrigger = '<tab>'
+" Ir a anterior ubicacion con Ctrl + k
+let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
+
+" deoplete
+" Activar deoplete al iniciar Neovim
+let g:deoplete#enable_at_startup = 1
+let g:python3_host_prog='/usr/bin/python3'
+" Cerrar automaticamente la ventana de vista previa (donde se muestra documentación, si existe)
+augroup deopleteCompleteDoneAu
+  autocmd!
+  autocmd CompleteDone * silent! pclose!
+augroup END

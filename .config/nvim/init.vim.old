@@ -1,0 +1,101 @@
+" Directorio de plugins
+call plug#begin('~/.local/share/nvim/plugged')
+
+" Aquí irán los plugins a instalar
+Plug 'tpope/vim-surround' " The plugin provides mappings to easily delete, change and add such surroundings in pairs
+Plug 'joshdick/onedark.vim'
+Plug 'iCyMind/NeoSolarized'
+Plug 'scrooloose/nerdtree' "Explorador de archivos, útil para ver la estructura de tu proyecto.
+Plug 'vim-airline/vim-airline' " Barra airline
+Plug 'vim-airline/vim-airline-themes'  " Temas para airline
+Plug 'Yggdroot/indentLine' "Muestra los niveles de indentación con líneas verticales.
+Plug 'sirver/ultisnips' "proporciona codigo reusable
+Plug 'honza/vim-snippets'
+Plug 'lervag/vimtex' " Latex Completions
+Plug 'KeitaNakamura/tex-conceal.vim'
+"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"Plug 'Shougo/neco-syntax'  " Fuente general de auto completado
+
+call plug#end()
+
+" Luego de esta línea puedes agregar tus configuraciones y mappings
+
+set title  " Muestra el nombre del archivo en la ventana de la terminal
+set number  " Muestra los números de las líneas
+set relativenumber  " Show relative line numbers
+set mouse=a  " Permite la integración del mouse (seleccionar texto, mover el cursor)
+
+set wrap  " Dividir la línea si es muy larga
+set cursorline  " Resalta la línea actual
+set colorcolumn=90  " Muestra la columna límite a 120 caracteres
+
+" Indentación a 2 espacios
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set shiftround
+set expandtab  " Insertar espacios en lugar de <Tab>s
+
+set hidden  " Permitir cambiar de buffers sin tener que guardarlos
+
+set ignorecase  " Ignorar mayúsculas al hacer una búsqueda
+set smartcase  " No ignorar mayúsculas si la palabra a buscar contiene mayúsculas
+
+set spelllang=en,es  " Corregir palabras usando diccionarios en inglés y español
+
+set termguicolors  " Activa true colors en la terminal
+set background=dark  " Fondo del tema: light o dark
+colorscheme default  " Nombre del tema
+
+
+" NerdTree
+let g:NERDTreeChDirMode = 2  " Cambia el directorio actual al nodo padre actual
+
+" Abrir/cerrar NERDTree con F2
+map <F2> :NERDTreeToggle<CR>
+
+"Airline
+let g:airline#extensions#tabline#enabled = 1  " Mostrar buffers abiertos (como pestañas)
+let g:airline#extensions#tabline#fnamemod = ':t'  " Mostrar sólo el nombre del archivo
+
+" Cargar fuente Powerline y símbolos (ver nota)
+let g:airline_powerline_fonts = 1
+
+set noshowmode  " No mostrar el modo actual (ya lo muestra la barra de estado)
+
+" IndentLine
+" No mostrar en ciertos tipos de buffers y archivos
+let g:indentLine_fileTypeExclude = ['text', 'sh', 'help', 'terminal']
+let g:indentLine_bufNameExclude = ['NERD_tree.*', 'term:.*']
+
+" Ultisnips
+" Expandir snippet con Ctrl + j
+let g:UltiSnipsExpandTrigger = '<tab>'
+" Ir a siguiente ubicacion con Ctrl + j
+let g:UltiSnipsJumpForwardTrigger = '<tab>'
+" Ir a anterior ubicacion con Ctrl + k
+let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
+" Directorio para mis snippets
+" let g:UltiSnipsSnippetDirectories = [$HOME,'~/.config/nvim/snippets']
+
+" vimtex
+let g:tex_flavor='latex'
+let g:vimtex_view_method='zathura'
+let g:vimtex_quickfix_mode=0
+let g:vimtex_compiler_progname='nvr'
+
+" tex-conceal
+set conceallevel=1
+let g:tex_conceal='abdmg'
+hi Conceal ctermbg=none
+
+" deoplete
+" Activar deoplete al iniciar Neovim
+" let g:deoplete#enable_at_startup = 1
+
+" Cerrar automaticamente la ventana de vista previa (donde se muestra documentación, si existe)
+" augroup deopleteCompleteDoneAu
+"  autocmd!
+"  autocmd CompleteDone * silent! pclose!
+" augroup END
+
